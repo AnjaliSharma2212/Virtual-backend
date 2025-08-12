@@ -111,24 +111,7 @@ npm run dev
 
 Make sure to configure environment variables in `server/.env` and `client/.env` for API keys, DB URLs, and storage credentials.
 
-## Project Structure (example)
 
-```
-/ client
-  / src
-    / components
-    / pages
-    / services  # API wrappers
-    / styles
-/ server
-  / controllers
-  / models
-  / routes
-  / sockets     # realtime chat handlers
-  / uploads     # local uploads for dev
-.env
-README.md
-```
 
 ## Usage
 
@@ -154,54 +137,12 @@ README.md
 * Messages include: sender name, timestamp, optional attachment.
 * Realtime presence (online students) and typing indicators can be added.
 
-## API Endpoints (example)
 
-```
-# Auth
-POST /api/auth/signup  # body: { name, email, password, role }
-POST /api/auth/login   # returns JWT
-
-# Classes
-GET /api/classes
-POST /api/classes        # teacher only
-GET /api/classes/:id
-PUT /api/classes/:id     # teacher only
-DELETE /api/classes/:id  # teacher only
-
-# Lectures / Notes
-POST /api/classes/:id/lectures       # add lecture + attachments
-PUT  /api/classes/:id/lectures/:lid  # edit lecture
-DELETE /api/classes/:id/lectures/:lid
-GET  /api/classes/:id/lectures/:lid/download  # download note
-
-# Chat (websocket namespace)
-CONNECT /ws/classes/:id
-EMIT message -> { text, attachments?, senderId }
 
 # Membership
 POST /api/classes/:id/join
 GET  /api/classes/:id/members
 ```
-
-## Security & Best Practices
-
-* Validate file types and limit upload size for notes.
-* Restrict download endpoints to class members only.
-* Sanitize user input to avoid XSS in chat messages.
-* Rate-limit chat messages to prevent spam.
-* Use HTTPS and secure cookies for production.
-
-## Contribution
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repo
-2. Create a feature branch `feat/your-feature`
-3. Commit changes and open a Pull Request
-
-Include tests for backend routes and components when possible.
-
-## To-Do / Roadmap
 
 * Add push notifications (email / in-app)
 * Video streaming / live class sessions
@@ -213,5 +154,3 @@ Include tests for backend routes and components when possible.
 This project is open-source. Add your preferred license (e.g., MIT).
 
 ---
-
-*If you'd like, I can also generate `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, or a short project description for your GitHub profile.*
